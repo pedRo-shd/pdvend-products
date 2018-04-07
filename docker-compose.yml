@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  mongo:
+    image: 'mongo'
+
+  website:
+    depends_on:
+      - 'mongo'
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/pdvend_products'
