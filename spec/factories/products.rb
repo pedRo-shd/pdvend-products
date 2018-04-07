@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :product do
-    name "MyString"
-    description "MyString"
-    id 1
-    height 1.5
-    weight 1.5
-    width 1.5
-    length 1.5
+    name FFaker::Product.product
+    description FFaker::Lorem.paragraph
+    id { rand(0..1000).to_i }
+    height { rand(0..1000).to_f }
+    weight { rand(0..1000).to_f }
+    width { rand(0..1000).to_f }
+    length { rand(0..1000).to_f }
   end
 end
