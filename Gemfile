@@ -26,6 +26,8 @@ gem 'mongoid'
 gem 'rack-cors'
 # Rack middleware for blocking & throttling
 gem 'rack-attack'
+# Gem para calculo de frete utilizando o Web Service dos Correios
+gem 'correios-frete'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
