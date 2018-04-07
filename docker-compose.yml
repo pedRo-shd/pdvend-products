@@ -1,19 +1,14 @@
 version: '2'
 
 services:
-  image: 'mongo'
-  volumes:
-    - 'mongo:/var/lib/mongodb/data'
+  mongo:
+    image: 'mongo'
 
   website:
     depends_on:
+      - 'mongo'
     build: .
     ports:
       - '3000:3000'
     volumes:
       - '.:/pdvend_products'
-    env_file:
-      - '.env'
-
-volumes:
-  mongo:

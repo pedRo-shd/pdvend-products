@@ -1,7 +1,8 @@
 # Use this image to generate container
 FROM ruby:2.5-slim
 # Install dependencies
-RUN apt-get update && apt-get install -qq -y --no-install-recommends build-essential nodejs libpq-dev
+RUN apt-get update && apt-get install -qq -y --no-install-recommends \
+      build-essential nodejs libpq-dev
 # Set path
 ENV INSTALL_PATH /pdvend_products
 # Build directory
