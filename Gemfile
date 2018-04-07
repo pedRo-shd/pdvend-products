@@ -28,6 +28,14 @@ gem 'mongoid'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # RSpec for Rails-3+ http://relishapp.com/rspec/rspec-rails
+  gem 'rspec-rails'
+  # Guard::RSpec automatically run your specs (much like autotest)
+  gem 'guard-rspec'
+  # Factory Bot ♥ Rails
+  gem 'factory_bot_rails'
+  # Faker refactored. https://github.com/ffaker/ffaker
+  gem 'ffaker'
 end
 
 group :development do
