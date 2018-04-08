@@ -1,24 +1,143 @@
-# README
+# Freight calculating via Correios Frete API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Dependencies:
+* Rails: 5.1.5
+* Ruby: 2.5.0
+* Mongodb
+* Redis
+* Docker
+* Docker Compose
 
-Things you may want to cover:
+## Install Docker and Docker Compose in Ubuntu
 
-* Ruby version
+* Update packages:
+  ```
+  sudo apt-get update
+  ```
 
-* System dependencies
+* GPG key of Docker:
+  ```
+  sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  ```
 
-* Configuration
+* Add the repository of Docker:
+  ```
+  sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+  ```
 
-* Database creation
+* Update packages again:
+  ```
+  sudo apt-get update
+  ```
 
-* Database initialization
+* Install Docker:
+  ```
+  sudo apt-get install -y docker-engine
+  ```
 
-* How to run the test suite
+* Add Docker to the system boot:
+  ```
+  sudo systemctl status docker
+  ```
 
-* Services (job queues, cache servers, search engines, etc.)
+* Add user the group docker:
+  ```
+  sudo usermod -aG docker $(whoami)
+  ```
 
-* Deployment instructions
+* Close the terminal and reopen
 
-* ...
+* Now is need install Docker Compose:
+  ```
+  curl -L https://github.com/docker/compose/releases/download/1.9.0/docker-compose-uname -s-uname -m > docker-compose
+  ```
+
+* Move the file to fold bin:
+  ```
+  sudo mv docker-compose /usr/local/bin/
+  ```
+
+* Run:
+  ```
+  chmod +x /usr/local/bin/docker-compose
+  ```
+
+## Getting Started
+
+* Clone the repository: `git clone https://github.com/pedRo-shd/pdvend-products.git`
+
+* Run the commands below, after installing docker and docker-compose:
+  ```
+  docker-compose up --build
+  docker-compose run website rails db:create
+  ```
+
+Run guard on rspec:
+  ```
+  docker-compose run website bundle exec guard
+  ```
+
+Run only rspec:
+* Rode:
+  ```
+  docker-compose run website bundle exec rspec
+  ```
+
+## REST
+
+This project supports API RESTful:
+
+### Examplos de chamadas a API
+* Product Creation
+  * POST http://localhost:3000/api/v1/products
+
+  EXAMPLE BODY:
+  ```
+  {
+    "name": "IBM",
+    "height": "14",
+    "weight": "13",
+    "width": "15.2",
+    "length": "17"
+  }
+  ```
+
+  RESPONSE:
+  ```
+  {
+    "_id":{
+      "$oid": "5aca94b2da0c4d0007de58c5"
+    },
+    "description": null,
+    "height": 14,
+    "length": 17,
+    "name": "IBM",
+    "weight": 13,
+    "width": 15.2
+  }
+  ```
+
+
+* Search the product and return the freight calculation
+  * GET http://localhost:3000/api/v1/products/freight_calculating/:id
+
+  EXAMPLE ENDPOINT:
+  * GET http://localhost:3000/api/v1/products/freight_calculating/5aca94b2da0c4d0007de58c5
+  RESPONSE:
+  ```
+  {
+    "cost_of_freight": "R$ 119,80",
+    "zipcode": "Origem 04094-050, Destino 90619-900",
+    "product":{
+      "_id":{
+        "$oid": "5aca7331da0c4d0007de58c4"
+      },
+      "description": null,
+      "height": 14,
+      "length": 17,
+      "name": "IBM",
+      "weight": 13,
+      "width": 15.2
+    }
+  }
+  ```
