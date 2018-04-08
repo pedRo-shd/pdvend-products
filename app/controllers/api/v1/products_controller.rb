@@ -7,7 +7,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def show
-    freight = FreightCalculation.new(@product).call
+    freight = FreightProductJob.perform_now(@product)
     json_response(freight)
   end
 
