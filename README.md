@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/pedRo-shd/pdvend-products/maintainability"><img src="https://api.codeclimate.com/v1/badges/78fba7fc8c936939a83d/maintainability" /></a>
+
 # Freight calculating via Correios Frete API
 
 Dependencies:
