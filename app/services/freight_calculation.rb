@@ -3,19 +3,12 @@ require 'correios-frete'
 class FreightCalculation
   include ActionView::Helpers::NumberHelper
 
-  def initialize(product)
+  def initialize(product, freight)
     @product = product
-    frete = Correios::Frete::Calculador.new :cep_origem => "04094-050",
-                                            :cep_destino => "90619-900",
-                                            :peso => @product.weight,
-                                            :comprimento => @product.length,
-                                            :largura => @product.width,
-                                            :altura => @product.height
-    @freight = frete
+    @freight = freight
   end
 
   def call
-    # send to background
     value_freight
   end
 
@@ -45,5 +38,4 @@ class FreightCalculation
   def zipcode_message
     "Origem #{@freight.cep_origem}, Destino #{@freight.cep_destino}"
   end
-
 end
