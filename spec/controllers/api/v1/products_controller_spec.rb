@@ -35,24 +35,22 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       end
     end
 
-    # TODO:
-    # context 'when the record does not exist' do
-    #   it 'returns status code 404' do
-    #     get :show, params: { id: '' }
-    #     expect(response).to have_http_status(404)
-    #   end
-    # end
+    context 'when the record does not exist' do
+      it 'returns status code 404 with custom message' do
+        get :show, params: { id: '' }
+        expect(JSON.parse(response.body)['message']).to match(/Não há resultados para esse id, tente outro!*/)
+        expect(response).to have_http_status(404)
+      end
+    end
 
     context 'fetches the product and returns the freight calculation' do
       before do
         @product   = create(:product, name: 'Spacecraft')
-        @product_2 = create(:product)
-        @product_3 = create(:product)
       end
 
       it "returns product" do
         get :show, params: { id: @product.id }
-        expect(JSON.parse(response.body)['name']).to eq('Spacecraft')
+        expect(JSON.parse(response.body)['product']['name']).to eq('Spacecraft')
       end
     end
   end
