@@ -28,6 +28,8 @@ gem 'rack-cors'
 gem 'rack-attack'
 # Gem para calculo de frete utilizando o Web Service dos Correios
 gem 'correios-frete'
+# Simple, efficient background processing for Ruby http://sidekiq.org
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
