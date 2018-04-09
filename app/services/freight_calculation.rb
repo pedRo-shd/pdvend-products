@@ -36,6 +36,6 @@ class FreightCalculation
   end
 
   def zipcode_message
-    "Origem #{@freight.cep_origem}, Destino #{@freight.cep_destino}"
+    "Origin #{@freight.cep_origem}, Destination #{@freight.cep_destino}"
   end
 end

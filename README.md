@@ -89,7 +89,7 @@ Run only rspec:
 
 This project supports API RESTful:
 
-### Examplos de chamadas a API
+### Examples de chamadas a API
 * Product Creation
   * POST http://localhost:3000/api/v1/products
 

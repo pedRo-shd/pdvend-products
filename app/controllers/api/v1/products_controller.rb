@@ -2,8 +2,12 @@ class Api::V1::ProductsController < ApplicationController
   before_action :set_product, only: %i[show]
 
   def create
-    @product = Product.create!(product_params)
-    json_response(@product, :created)
+    @product = Product.new(product_params)
+    if @product.save
+      json_response(@product, :created)
+    else
+      json_response(@product.errors.messages, :unprocessable_entity)
+    end
   end
 
   def show

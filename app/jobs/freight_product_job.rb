@@ -3,8 +3,8 @@ class FreightProductJob < ApplicationJob
 
   def perform(product)
     puts Benchmark.measure {
-      @freight = Correios::Frete::Calculador.new :cep_origem => "04094-050",
-                                                 :cep_destino => "90619-900",
+      @freight = Correios::Frete::Calculador.new :cep_origem => "71916-500",
+                                                 :cep_destino => "01225-001",
                                                  :peso => product.weight,
                                                  :comprimento => product.length,
                                                  :largura => product.width,

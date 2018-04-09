@@ -2,13 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::ProductsController, type: :controller do
 
-  describe "GET #create" do
+  describe "POST #create" do
     # valid payload
     let(:valid_attributes) { { name: 'IBM PC',
                                height: rand(0..1000).to_f,
                                weight: rand(0..1000).to_f,
                                width: rand(0..1000).to_f,
                                length: rand(0..1000).to_f } }
+
+    let(:invalid_attributes) { { name: '',
+                                 height: rand(0..1000).to_f,
+                                 weight: rand(0..1000).to_f,
+                                 width: rand(0..1000).to_f,
+                                 length: rand(0..1000).to_f } }
 
     context 'when the request is valid' do
       it 'returns status code 201' do
@@ -19,6 +25,18 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       it 'creates a product' do
         post :create, params: valid_attributes
         expect(JSON.parse(response.body)['name']).to eq('IBM PC')
+      end
+    end
+
+    context 'when the request invalid' do
+      it 'returns status code 422' do
+        post :create, params: invalid_attributes
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns message errors' do
+        post :create, params: invalid_attributes
+        expect(JSON.parse(response.body)).to match("name"=>["can't be blank"])
       end
     end
   end
