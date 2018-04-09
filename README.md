@@ -80,7 +80,6 @@ Run guard on rspec:
   ```
 
 Run only rspec:
-* Rode:
   ```
   docker-compose run website bundle exec rspec
   ```
@@ -129,7 +128,7 @@ This project supports API RESTful:
   ```
   {
     "cost_of_freight": "R$ 119,80",
-    "zipcode": "Origem 04094-050, Destino 90619-900",
+    "zipcode": "Origin 71916-500, Destination 01225-001",
     "product":{
       "_id":{
         "$oid": "5aca7331da0c4d0007de58c4"
