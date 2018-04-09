@@ -28,30 +28,19 @@ services:
       - '.:/pdvend_products'
     env_file:
       - '.env'
-    volumes_from:
-      - box
 
   website:
     depends_on:
       - 'mongo'
       - 'redis'
     build: .
-    command: bash start
     ports:
       - '3000:3000'
     volumes:
       - '.:/pdvend_products'
-    volumes_from:
-      - box
     env_file:
       - '.env'
-
-  box:
-    image: busybox
-    volumes:
-      - /box
 
 volumes:
   mongo:
   redis:
-  box:
