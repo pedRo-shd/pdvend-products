@@ -6,12 +6,16 @@ services:
     command: mongod --smallfiles --quiet
     ports:
       - "27017:27017"
+    volumes:
+    - 'mongo:/var/lib/mongodb/data'
 
   redis:
     image: redis:3.2-alpine
     command: redis-server
     ports:
       - '6379:6379'
+    volumes:
+    - 'redis:/var/lib/redis/data'
 
   jobs:
     depends_on:
@@ -24,17 +28,30 @@ services:
       - '.:/pdvend_products'
     env_file:
       - '.env'
+    volumes_from:
+      - box
 
   website:
     depends_on:
       - 'mongo'
+      - 'redis'
     build: .
+    command: bash start
     ports:
       - '3000:3000'
     volumes:
       - '.:/pdvend_products'
+    volumes_from:
+      - box
     env_file:
       - '.env'
 
+  box:
+    image: busybox
+    volumes:
+      - /box
+
 volumes:
   mongo:
+  redis:
+  box:

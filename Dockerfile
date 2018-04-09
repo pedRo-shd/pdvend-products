@@ -11,9 +11,7 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 # Copy the Gemfile into the container
 COPY Gemfile Gemfile.lock ./
-# Install Gems
-RUN bundle install
-# Copia nosso código para dentro do container
+# Set path to Gems
+ENV BUNDLE_PATH /box
+# Copy code into container
 COPY . .
-# Run server
-CMD puma -C config/puma.rb
