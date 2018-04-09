@@ -66,7 +66,10 @@ Dependencies:
 
 ## Getting Started
 
-* Clone the repository: `git clone https://github.com/pedRo-shd/pdvend-products.git`
+* Clone the repository:
+  ```
+  git clone https://github.com/pedRo-shd/pdvend-products.git
+  ```
 
 * Run the commands below, after installing docker and docker-compose:
   ```
