@@ -1,9 +1,10 @@
 production:
-  sessions:
-    default:
-      database: pdvend_products_production
-      hosts:
-        - mongo
+    clients:
+        default:
+            uri: &lt;%= ENV['MONGODB_URI'] %&gt;
+        options:
+            skip_version_check: true
+        safe: true
 
 development:
   # Configure available database clients. (required)
