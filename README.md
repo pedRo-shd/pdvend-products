@@ -66,7 +66,10 @@ Dependencies:
 
 ## Getting Started
 
-* Clone the repository: `git clone https://github.com/pedRo-shd/pdvend-products.git`
+* Clone the repository:
+  ```
+  git clone https://github.com/pedRo-shd/pdvend-products.git
+  ```
 
 * Run the commands below, after installing docker and docker-compose:
   ```
@@ -74,12 +77,12 @@ Dependencies:
   docker-compose run website rails db:create
   ```
 
-Run guard on rspec:
+* Run guard on rspec:
   ```
   docker-compose run website bundle exec guard
   ```
 
-Run only rspec:
+* Run only rspec:
   ```
   docker-compose run website bundle exec rspec
   ```
@@ -124,6 +127,7 @@ This project supports API RESTful:
 
   EXAMPLE ENDPOINT:
   * GET http://localhost:3000/api/v1/products/freight_calculating/5aca94b2da0c4d0007de58c5
+
   RESPONSE:
   ```
   {
